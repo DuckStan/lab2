@@ -56,7 +56,7 @@ TEST(CurveMethods, Parameters){
 	//ASSERT_EQ(1, a1.f(0).x);
 	//ASSERT_EQ(-1, a1.f(0).y);
 	//ASSERT_ANY_THROW(a1.f(2));
-	ASSERT_STREQ("p^2 = 1.00", a1.frm());
+	//ASSERT_STREQ("p^2 = 1.00", a1.frm());
 	lab2::Curve a2(0, 2);
 	ASSERT_NEAR(4, a2.area(), err);
 	ASSERT_EQ(0, a2.type());
@@ -69,7 +69,7 @@ TEST(CurveMethods, Parameters){
 	//ASSERT_NEAR(3 + sqrt(3), a2.f(0).x, err);
 	//ASSERT_EQ(3 - sqrt(3), a2.f(0).y);
 	//ASSERT_ANY_THROW(a2.f(-2));
-	ASSERT_STREQ("8.00cos(2*fi)", a2.frm());
+	//ASSERT_STREQ("8.00cos(2*fi)", a2.frm());
 }
 int main(int argc, char** argv) {
 	::testing::InitGoogleTest(&argc, argv);
