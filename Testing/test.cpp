@@ -10,13 +10,13 @@ TEST(CurveConstructor, DefaultConstructor){
 }
 TEST(CurveConstructor, InitConstructors){
 	lab2::Curve a2(2, 3);
-	lab2::Parameters p(2, 3);
+	lab2::Parameters p(4, 8);
 	//ASSERT_EQ(3, a2.getP()); 
 	ASSERT_EQ(2, a2.getP().c);
 	ASSERT_EQ(3, a2.getP().m);
 	lab2::Curve a3(p);
-	ASSERT_EQ(2, a3.getP().c);
-	ASSERT_EQ(3, a3.getP().m);
+	ASSERT_EQ(4, a3.getP().c);
+	ASSERT_EQ(8, a3.getP().m);
 	//ASSERT_EQ(8, a3.getR());
 	lab2::Curve a4(-4, -5);
 	ASSERT_EQ(-4, a4.getP().c);
