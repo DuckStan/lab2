@@ -4,22 +4,27 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <sstream>
 
 namespace lab2 {
 	//constructors
 	Curve::Curve() :p(2, 1) {};
 	Curve::Curve(const Parameters& p0){
-		if ((p0.c == 0) && (p0.m == 0)) {
+		/*if ((p0.c == 0) && (p0.m == 0)) {
 			throw std::exception("Invalid parameters");
-		}
-		p = p0;
+		} */
+		//p = p0;
+		setP(p0);
 	}
 	Curve::Curve(double c0, double m0) {
-		if ((c0 == 0) && (m0 == 0)) 
+		/*if ((c0 == 0) && (m0 == 0)) 
 			throw std::exception("Invalid parameters");
 		
 		p.c = c0;
 		p.m = m0;
+		*/
+		Parameters p(c0, m0);
+		setP(p);
 	}
 	//setters
 	Curve& Curve::setP(const Parameters& p0) {
@@ -70,8 +75,9 @@ namespace lab2 {
 		if (p.c < 2 * p.m * p.m) return sqrt(((2 * p.m * p.m + p.c) * cos(fi) * cos(fi)) + ((2 * p.m * p.m - p.c) * sin(fi) * sin(fi)));
 		return 0;
 	}
-	char* Curve::frm() const {
-		const char* s1 = "(p)^2 -  cos^2(fi) +  sin^2(fi) = ";
+	int Curve::frm() const {
+		std::stringstream ss;
+		/* const char* s1 = "(p)^2 -  cos^2(fi) +  sin^2(fi) = ";
 		int l = strlen(s1) + 1;
 		size_t Size = 20;
 		char num[20]; 
@@ -81,31 +87,39 @@ namespace lab2 {
 		l += strlen(num);
 		
 		char* s = new char[l];
-		
-		sprintf_s(s, l, "p^2 = ");
-
-		int k = strlen(s);
+		*/
+		//sprintf_s(s, l, "p^2 = ");
+		ss << "p^2 = ";
+		//int k = strlen(s);
 		if (p.c == 0) {
-			sprintf_s(s, l - k, "%.2fcos(2*fi)", 2 * p.m * p.m);
-			return s;
+			//sprintf_s(s, l - k, "%.2fcos(2*fi)", 2 * p.m * p.m);
+			ss << 2 * p.m * p.m << "cos(2*fi)";
+			std::cerr << ss.str();
+			return 0;
 		}
 		//else
 		//sprintf_s(s, l, "(x - %.2f) ^ 2", p.x);
 		if (p.c > 2*p.m*p.m) {
-			sprintf_s(s + k, l - k, "%.2fcos^2(fi) + %.2fsin^2(fi)", 2*p.m*p.m + p.c, p.c - 2*p.m*p.m);
-			return s;
+			//sprintf_s(s + k, l - k, "%.2fcos^2(fi) + %.2fsin^2(fi)", 2*p.m*p.m + p.c, p.c - 2*p.m*p.m);
+			ss << 2 * p.m * p.m + p.c << "cos^2(fi) + " << p.c - 2 * p.m * p.m << "sin ^ 2(fi)";
+			std::cerr << ss.str();
+			return 0;
 		}
 		//else
 		//sprintf_s(s + k, l - k, " + (y - %.2f) ^ 2", p.y);
 		//k = strlen(s);
 		if (p.c < 2 * p.m * p.m) {
-			sprintf_s(s + k, l - k, "%.2fcos^2(fi) - %.2fsin^2(fi)", 2 * p.m * p.m + p.c, 2 * p.m * p.m - p.c);
-			return s;
+			//sprintf_s(s + k, l - k, "%.2fcos^2(fi) - %.2fsin^2(fi)", 2 * p.m * p.m + p.c, 2 * p.m * p.m - p.c);
+			ss << 2 * p.m * p.m + p.c << "cos^2(fi) + " << p.c - 2 * p.m * p.m << "sin ^ 2(fi)";
+			std::cerr << ss.str();
+			return 0;
 		}
 		if (p.c == 2 * p.m * p.m) {
 			double m = p.m * p.m;
-			sprintf_s(s + k, l - k, "%.2f", m);
-			return s;
+			//sprintf_s(s + k, l - k, "%.2f", m);
+			ss << p.m;
+			std::cerr << ss.str();
+			return 0;
 		}
 	}
 
