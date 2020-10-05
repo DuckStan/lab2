@@ -27,7 +27,7 @@ namespace lab2{
 		double area()const;
 		int type()const;
 		double distance(double fi)const;
-		char* frm() const;
+		int frm() const;
 	};
 }
 #endif
